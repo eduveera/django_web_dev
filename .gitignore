@@ -1,0 +1,24 @@
+# Ignore virtual environments
+env/
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# SQLite database
+*.sqlite3
+
+# Environment files
+.env
+
+# Static and media (optional)
+static/
+media/
+
+# VSCode and OS files
+.vscode/
+*.DS_Store
+Thumbs.db
+
+
