@@ -1,0 +1,20 @@
+# Python virtual environment
+venv/
+venv/
+
+# Bytecode & caches
+__pycache__/
+*.py[cod]
+
+# Django migrations & DBs
+*.sqlite3
+db.sqlite3
+
+# OS or editor files
+.DS_Store
+Thumbs.db
+*.log
+
+# IDE settings
+.vscode/
+.idea/
