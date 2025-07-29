@@ -1,32 +1,35 @@
-body {
-  font-family: 'Roboto', sans-serif;
+html, body {
+  height: 100%;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-y: auto;
+}
+
+section, .main-content {
+  min-height: 100vh;
 }
 
 * {
   box-sizing: border-box;
 }
-body, html {
-  overflow-x: hidden;
-  overflow-y: auto;
-  height: auto !important;
-}
-
 
 .custom-bg {
   background-color: #3D52A0;
   padding: 10px 0;
 }
+
 .navbar {
   position: sticky;
   top: 0;
   z-index: 999;
-  background: color #7091e6; /* optional */
+  background-color: #7091e6;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
-
-
 
 .navbar-brand {
   font-size: 24px;
@@ -38,22 +41,27 @@ body, html {
   transition: all 0.3s ease;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.dropdown-item:hover {
   color: #C6CBE9 !important;
+  background-color: #2f3f83 !important;
   transform: translateY(-2px);
 }
 
 .dropdown-menu {
   background-color: #3D52A0;
   border: none;
+  animation: fadeIn 0.3s ease-in-out;
 }
 
 .dropdown-item {
   color: white;
+  padding: 10px 15px;
 }
 
-.dropdown-item:hover {
-  background-color: #2f3f83;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .whatsapp-btn {
@@ -65,11 +73,13 @@ body, html {
   font-size: 20px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
+
 .insta-icon {
   background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
   color: white;
   border: none;
 }
+
 .insta-icon:hover {
   opacity: 0.8;
 }
@@ -86,22 +96,32 @@ body, html {
 .slider-container {
   position: relative;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   overflow: hidden;
-  margin-top: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding-top: 100px;
+  padding-right: 60px;
+  box-sizing: border-box;
 }
 
 .slider {
+  position: absolute;
   width: 100%;
-  height: 100%;
-  position: relative;
+  min-height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
 .slide {
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   object-fit: cover;
   position: absolute;
+  top: 0;
+  left: 0;
   opacity: 0;
   transition: opacity 1s ease-in-out;
 }
@@ -111,35 +131,19 @@ body, html {
 }
 
 .form-overlay {
-  position: absolute;
-  top: 58%;
-  right: 8%;
-  transform: translateY(-50%);
-  padding: 40px 30px;
+  position: relative;
+  z-index: 2;
+  padding: 30px 25px;
   border-radius: 12px;
   max-width: 420px;
+  width: 100%;
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
   color: #fff;
-  z-index: 10;
 }
-
-
- /* ✅ GLASSMORPHISM EFFECT - Updated */
-background: rgba(255, 255, 255, 0.1); /* Slightly more transparent */
-border-radius: 16px;
-backdrop-filter: blur(12px);
--webkit-backdrop-filter: blur(12px);
-border: 1px solid rgba(255, 255, 255, 0.2);
-box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-color: #ffffff;
-padding: 20px;
-
-
-
 
 .form-box h2 {
   margin-bottom: 20px;
@@ -166,40 +170,58 @@ padding: 20px;
 }
 
 @media (max-width: 768px) {
-  .form-overlay {
-    position: static;
-    transform: none;
-    width: 90%;
-    margin: 20px auto;
+  .slider-container {
+    flex-direction: column;
+    padding-top: 0;
+    padding-right: 0;
   }
 
   .slider {
-    height: 500px;
+    position: relative;
+    height: 300px;
+    min-height: auto;
   }
-}
-@media (max-width: 768px) {
+
+  .slide {
+    height: 300px;
+    min-height: auto;
+  }
+
   .form-overlay {
-    position: static;
-    transform: none;
-    max-width: 100%;
-    margin: 20px auto;
+    position: relative;
+    margin: 40px auto 20px;
+    max-width: 95%;
+    width: 100%;
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
     padding: 20px;
-  }
-
-  .hero {
-    flex-direction: column;
-    align-items: center;
+    z-index: 2;
   }
 
   .form-box input,
   .form-box select {
     width: 100%;
   }
+
+  .dropdown-menu {
+    position: absolute;
+    width: 100%;
+    border-radius: 0;
+  }
 }
 
+.error-message {
+  font-size: 0.75rem;
+  color: red;
+  line-height: 1.2;
+  margin-top: 4px;
+  display: block;
+}
 
+input:invalid + .error-message,
+select:invalid + .error-message {
+  display: block;
+}
