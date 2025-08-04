@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Login</title>
+
+  <!-- Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <style>
+    body {
+      background: #f0f2f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .login-card {
+      width: 100%;
+      max-width: 420px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+    .login-card .card-image {
+      background: linear-gradient(135deg, #7b1fa2, #ab47bc);
+      padding: 24px;
+      text-align: center;
+    }
+    .login-card .card-image h5 {
+      color: #fff;
+      margin: 0;
+    }
+    .login-card .input-field input[type="text"],
+    .login-card .input-field input[type="password"] {
+      margin-bottom: 20px;
+    }
+    .login-card .btn-login {
+      background: linear-gradient(135deg, #7b1fa2, #ab47bc);
+      width: 100%;
+    }
+    .login-card .btn-login:hover {
+      background: linear-gradient(135deg, #6a1180, #9c27b0);
+    }
+  </style>
+</head>
+<body>
+  <div class="login-card card">
+    <div class="card-image">
+      <h5>Admin Login</h5>
+    </div>
+    <div class="card-content">
+      <form method="POST">
+        {% csrf_token %}
+        <div class="input-field">
+          <i class="material-icons prefix">person</i>
+          <input id="username" type="text" name="username" required autofocus>
+          <label for="username">Username</label>
+        </div>
+        <div class="input-field">
+          <i class="material-icons prefix">lock</i>
+          <input id="password" type="password" name="password" required>
+          <label for="password">Password</label>
+        </div>
+        <button type="submit" class="btn btn-login waves-effect waves-light">
+          Login
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- jQuery & Materialize JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+30..."></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
