@@ -3,33 +3,51 @@ from django.db import models
 # Create your models here.
 
 class Enquiry(models.Model):
-    lead_stage_type = [
-        ('DROP NOT INTERESTED', 'DROP NOT INTERESTED'),
-        ('BLANK', 'BLANK'),
-        ('BUSY', 'BUSY'),
-        ('SWITCH OFF', 'SWITCH OFF'),
-        ('PROSPECT', 'PROSPECT'),
+    # Using tuples of (actual_value, human_readable_name) for choices
+    LEAD_STAGE_CHOICES = [
+        ('DROP_NOT_INTERESTED', 'Drop - Not Interested'),
+        ('BLANK', 'Blank'),
+        ('BUSY', 'Busy'),
+        ('SWITCH_OFF', 'Switch Off'),
+        ('PROSPECT', 'Prospect'),
     ]
 
-    lead_source_type = [
-        ('Website', 'Website'),
-        ('Linkdin', 'Linkdin'),
-        ('Instagram', 'Instagram'),
+    LEAD_SOURCE_CHOICES = [
+        ('WEBSITE', 'Website'),
+        ('LINKEDIN', 'LinkedIn'), # Corrected "Linkdin" to "LinkedIn"
+        ('INSTAGRAM', 'Instagram'),
     ]
+
+    name = models.CharField(max_length=100, null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
+    phone = models.BigIntegerField(null=True, blank=True)
+    date_of_birth = models.DateField(null=True, blank=True)
+    university = models.CharField(max_length=100, null=True, blank=True)
+    course = models.CharField(max_length=100, null=True, blank=True)
     
-    name = models.CharField(max_length=100, null=False),
-    email = models.EmailField(null=False),
-    phone = models.BigIntegerField(null=False),
-    date_of_birth = models.DateField(null=False),
-    university = models.CharField(max_length=100, null=False),
-    course = models.CharField(max_length=100, null=False),
-    lead_source = models.CharField(max_length=100, choices=lead_source_type, default='Website'),
-    lead_stage = models.CharField(max_length=100, choices=lead_stage_type),
-
-
-def __str__(self):
-        return self.name
-
+    # Using the defined choices and providing a default
+    lead_source = models.CharField(
+        max_length=50, # A shorter max_length is usually sufficient for choices
+        choices=LEAD_SOURCE_CHOICES,
+        default='WEBSITE',
+        null=True, 
+        blank=True
+    )
     
-    
+    # Using the defined choices
+    lead_stage = models.CharField(
+        max_length=50, # A shorter max_length is usually sufficient for choices
+        choices=LEAD_STAGE_CHOICES,
+        null=True, 
+        blank=True
+    )
 
+    class Meta:
+        verbose_name = "Enquiry"
+        verbose_name_plural = "Enquiries"
+        # You might want to add ordering, e.g., ordering = ['-date_of_creation']
+        # if you add a DateTimeField for creation date.
+
+    def __str__(self):
+        # Always good to have a string representation for Django Admin
+        return self.name if self.name else f"Enquiry {self.pk}"

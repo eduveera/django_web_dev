@@ -13,10 +13,11 @@
     </div>
 
     <div class="form-overlay">
-      <form class="form-box">
+      <form class="form-box" method="post">
+         {% csrf_token %}
         <h2 class="form-title text-center" style="color: black;">Register Now</h2>
-        <input type="text" placeholder="Name" class="form-control mb-3" required>
-        <input type="email" placeholder="Email" class="form-control mb-3" required>
+        <input type="text" placeholder="Name" class="form-control mb-3" name="name" required>
+        <input type="email" placeholder="Email" class="form-control mb-3"  name="email" required>
 
         <div class="form-group mb-3">
           <label for="country-code" class="form-label">Phone Number</label>
@@ -32,7 +33,7 @@
                 <li><a class="dropdown-item d-flex align-items-center" data-code="+971" data-flag="ae"><img src="https://flagcdn.com/w40/ae.png" style="width: 20px;" class="me-2">UAE (+971)</a></li>
               </ul>
             </div>
-            <input type="tel" class="form-control" placeholder="Phone Number" required>
+            <input type="tel" class="form-control" placeholder="Phone Number"  name="phone" required>
           </div>
         </div>
 

@@ -77,9 +77,13 @@ WSGI_APPLICATION = "eduveera.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+   'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'eduveera_db',          # your MySQL DB name
+        'USER': 'root',                 # your MySQL username
+        'PASSWORD': 'Manjeet@123',    # your MySQL password
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
@@ -126,3 +130,12 @@ STATICFILES_DIRS = [BASE_DIR / "static",
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'manjeet737098@gmail.com'
+EMAIL_HOST_PASSWORD = 'bstjfpywlkxsknkz' 
