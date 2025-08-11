@@ -13,8 +13,10 @@
     </div>
 
     <div class="form-overlay">
-      <form class="form-box">
-        <h2 class="form-title text-center" style="color: black;">Register Now</h2>
+
+      <form class="form-box" method="POST" action="/">
+        {% csrf_token %}
+        <h2 class="form-title text-center" style="color: whitesmoke;">Register Now</h2>
         <input type="text" placeholder="Name" class="form-control mb-3" required>
         <input type="email" placeholder="Email" class="form-control mb-3" required>
 
