@@ -2,16 +2,18 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
+  font-family: 'Roboto', sans-serif;
+  overflow-x: hidden; /* Prevents horizontal scrolling */
 }
 
 body {
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensures the body always fills the viewport height */
 }
 
-section, .main-content {
-  min-height: 100vh;
+.main-content {
+  flex-grow: 1; /* This pushes the footer down by taking up all available space */
 }
 
 * {
@@ -96,20 +98,18 @@ section, .main-content {
 .slider-container {
   position: relative;
   width: 100%;
-  min-height: 100vh;
-  overflow: hidden;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
   padding-top: 100px;
   padding-right: 60px;
   box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .slider {
   position: absolute;
   width: 100%;
-  min-height: 100vh;
+  height: 100%;
   top: 0;
   left: 0;
   z-index: 1;
@@ -117,7 +117,7 @@ section, .main-content {
 
 .slide {
   width: 100%;
-  min-height: 100vh;
+  height: 100%;
   object-fit: cover;
   position: absolute;
   top: 0;
@@ -149,12 +149,19 @@ section, .main-content {
   margin-bottom: 20px;
 }
 
+.form-box label {
+  color: black;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
 .form-box input,
 .form-box select,
 .form-box button {
   padding: 12px;
   border-radius: 6px;
   border: 1px solid #ccc;
+  color: black;
 }
 
 .form-box button {
@@ -174,6 +181,7 @@ section, .main-content {
     flex-direction: column;
     padding-top: 0;
     padding-right: 0;
+    height: auto;
   }
 
   .slider {
@@ -224,4 +232,60 @@ section, .main-content {
 input:invalid + .error-message,
 select:invalid + .error-message {
   display: block;
+}
+
+/* Footer Styles */
+.footer-dark {
+  background-color: #1a2238;
+  color: #fff;
+}
+
+.footer-heading {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #ffc107;
+}
+
+.footer-link {
+  color: #c6cbe9;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: yellow;
+}
+
+.footer-contact-info li {
+  color: #c6cbe9;
+  margin-bottom: 1rem;
+}
+
+.footer-contact-info li i {
+  color: #ffc107;
+}
+
+.social-icons-footer a {
+  display: inline-block;
+  color: #fff;
+  background-color: #ffc107;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  margin-right: 10px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons-footer a:hover {
+  background-color: #e0a800;
+  transform: translateY(-3px) scale(1.1);
+}
+
+hr {
+  border-color: rgba(255, 255, 255, 0.1);
 }
