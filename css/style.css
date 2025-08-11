@@ -165,7 +165,7 @@ body {
 }
 
 .form-box button {
-  background-color: #007bff;
+  background-color: #6f7d8c;
   border: none;
   color: white;
   cursor: pointer;
@@ -236,7 +236,7 @@ select:invalid + .error-message {
 
 /* Footer Styles */
 .footer-dark {
-  background-color: #1a2238;
+  background-color: #3D52A0;
   color: #fff;
 }
 
@@ -244,7 +244,7 @@ select:invalid + .error-message {
   font-size: 1.25rem;
   font-weight: bold;
   margin-bottom: 1.5rem;
-  color: #ffc107;
+  color: white;
 }
 
 .footer-link {
@@ -256,7 +256,7 @@ select:invalid + .error-message {
 }
 
 .footer-link:hover {
-  color: yellow;
+  color: darkblue;
 }
 
 .footer-contact-info li {
@@ -265,13 +265,13 @@ select:invalid + .error-message {
 }
 
 .footer-contact-info li i {
-  color: #ffc107;
+  color: white;
 }
 
 .social-icons-footer a {
   display: inline-block;
   color: #fff;
-  background-color: #ffc107;
+  background-color:;
   width: 40px;
   height: 40px;
   line-height: 40px;
@@ -282,7 +282,7 @@ select:invalid + .error-message {
 }
 
 .social-icons-footer a:hover {
-  background-color: #e0a800;
+  background-color: darkblue;
   transform: translateY(-3px) scale(1.1);
 }
 
