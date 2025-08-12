@@ -4,6 +4,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', include('customadmin.urls')),  
     path('dj-admin/', admin.site.urls),
-    path('', include('appEdu.urls')),
+    path('', include('appEdu.urls'),name="appEdu"),
 ]
-admin.site.site_header = "EDUVEERA"

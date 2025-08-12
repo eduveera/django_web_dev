@@ -1,15 +1,48 @@
-# students/models.py
+# your_app/models.py
 from django.db import models
 
-class Student(models.Model):
-    name = models.CharField(max_length=120)
-    dob = models.DateField(verbose_name="Date of birth")
-    email = models.EmailField(unique=True)
-    submitted_at = models.DateTimeField(auto_now_add=True)
-    handled_by_teacher = models.BooleanField(
-        default=False,
-        help_text="Checked = teacher has reached out"
-    )
+class LeadSource(models.Model):
+    name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.name
+
+
+class LeadStage(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Enquiry(models.Model):
+    name = models.CharField(max_length=100, null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
+    phone = models.BigIntegerField(null=True, blank=True)
+    date_of_birth = models.DateField(null=True, blank=True)
+    university = models.CharField(max_length=100, null=True, blank=True)
+    course = models.CharField(max_length=100, null=True, blank=True)
+
+    lead_source = models.ForeignKey(
+        LeadSource,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
+    )
+    def save(self, *args, **kwargs):
+        if not self.lead_source:
+            try:
+                self.lead_source = LeadSource.objects.get(name="Website")
+            except LeadSource.DoesNotExist:
+                # Create "Website" if it doesn't exist
+                self.lead_source = LeadSource.objects.create(name="Website")
+        super().save(*args, **kwargs)
+    lead_stage = models.ForeignKey(
+        LeadStage,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
+    )
+
+    def __str__(self):
+        return self.name if self.name else "Unnamed Enquiry"

@@ -1,21 +1,43 @@
-from django.shortcuts import render, redirect
-from .forms import StudentForm
+from django.shortcuts import render
+from .models import Enquiry
+from django.core.mail import EmailMessage
+import threading
 
+def send_email(name, email):
+    try:
+        msg = EmailMessage(
+            subject="Thanks for registering!",
+            body=f"<h2>Hello {name},</h2><p>Your registration has been received.</p>",
+            from_email="mydatayatra@gmail.com",
+            to=[email]
+        )
+        msg.content_subtype = "html"
+        msg.send()
+    except Exception as e:
+        print("Email error:", e)
 
-# Create your views here.
-def home_view(request):
-    context = {
-        'message': 'Hello from myapp!',
-    }
-    return render(request, 'appEdu/home.html', context)
-
-
-def student_signup(request):
+def index(request):
     if request.method == 'POST':
-        form = StudentForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('thank_you')  # or show a success message
-    else:
-        form = StudentForm()
-    return render(request, 'students/signup.html', {'form': form})
+        name = request.POST['name']
+        email = request.POST['email']
+        phone = request.POST['phone']
+        dob = request.POST['dob']
+        university = request.POST['university']
+        course = request.POST['course']
+
+        # Save to database
+        Enquiry.objects.create(
+            name=name,
+            email=email,
+            phone=phone,
+            date_of_birth=dob,
+            university=university,
+            course=course,
+        )
+
+        # Send confirmation email
+        threading.Thread(target=send_email, args=(name, email)).start()
+
+        return render(request, 'appEdu/home.html', {'success': True})
+
+    return render(request, 'appEdu/home.html')

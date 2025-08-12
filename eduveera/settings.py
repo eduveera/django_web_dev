@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -31,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "jazzmin",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -39,8 +41,38 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'appEdu',
     "customadmin",
-    'jazzmin',
 ]
+# Jazzmin settings
+JAZZMIN_SETTINGS = {
+    "site_title": "EduVeera Admin",
+    "site_header": "EduVeera",
+    "site_brand": "EduVeera",
+    "site_logo": "images/img1.jpg",   # no leading slash!
+    "welcome_sign": "Welcome to EduVeera Admin",
+    "copyright": "EduVeera",
+    "search_model": ["appEdu.Enquiry", "auth.User"],
+    "language_chooser": False,   # you said you don't want language chooser
+    # sidebar / icons
+    "icons": {
+        "your_app": "fas fa-address-book",
+        "your_app.enquiry": "fas fa-phone-alt",
+        "auth.user": "fas fa-user",
+    },
+    "order_with_respect_to": ["appEdu", "auth"],
+    # custom css (relative to static/)
+    "custom_css": "css/admin_custom.css",
+    # change form layout
+    "changeform_format": "vertical_tabs",
+}
+
+# UI tweaks (simple, minimal)
+JAZZMIN_UI_TWEAKS = {
+    "theme": "slate",
+    "dark_mode_theme": "darkly",
+        "navbar": "navbar-dark navbar-primary",  # dark navbar with blue color
+    "sidebar": "sidebar-dark-primary",  # dark sidebar
+    "brand_color": "primary",  # blue brand color
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -57,7 +89,7 @@ ROOT_URLCONF = "eduveera.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / 'django_web_project' / 'templates',],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -118,10 +150,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "/static/"
+STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [BASE_DIR / "static",
+]
+
+
+
 # STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+# Email settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'mydatayatra@gmail.com'
+EMAIL_HOST_PASSWORD = 'fxkygwwwrdzaggnf'
