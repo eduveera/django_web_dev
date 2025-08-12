@@ -289,3 +289,103 @@ select:invalid + .error-message {
 hr {
   border-color: rgba(255, 255, 255, 0.1);
 }
+
+
+.dark-blue-text {
+    color: #1a3c61;
+}
+
+.light-blue-text {
+    color: #5c97d0;
+}
+
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center; 
+    padding-bottom: 50px;
+}
+
+/* Styles for the "Why Choose Leverage Edu?" section */
+.feature-item {
+    background-color: transparent;
+    border: none;
+    padding: 20px;
+}
+
+.feature-item h4 {
+    font-size: 1.25rem;
+    color: #1a3c61;
+}
+
+.feature-item:hover {
+    cursor: pointer;
+    transition: 1s ease;
+}
+
+/* Container for images in "Why Choose Leverage Edu?" */
+.icon-circle {
+    width: 60px;
+    height: 60px;
+    background-color: #e6f0fa;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #5c97d0;
+    font-size: 24px;
+}
+
+
+.icon-circle img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%; 
+}
+
+/* Styles for the "Leverage Edu Advantage" section */
+.advantage-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.advantage-card:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for images in "Leverage Edu Advantage" cards */
+.advantage-image {
+    width: 30px;
+    height: 30px;
+}
+
+.advantage-card p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #4b4b4b;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
+    .advantage-card {
+        flex-direction: row;
+        text-align: left;
+        padding: 20px;
+    }
+    .advantage-icon {
+        margin-bottom: 0;
+    }
+}
