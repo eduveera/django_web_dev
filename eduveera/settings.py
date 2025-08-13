@@ -69,15 +69,15 @@ JAZZMIN_SETTINGS = {
 JAZZMIN_UI_TWEAKS = {
     "theme": "slate",
     "dark_mode_theme": "darkly",
-        "navbar": "navbar-dark navbar-primary",  # dark navbar with blue color
-    "sidebar": "sidebar-dark-primary",  # dark sidebar
+    "navbar": "navbar-dark navbar-primary",  # dark navbar with blue color
+    "sidebar": "navbar-primary",  # blue sidebar
     "brand_color": "primary",  # blue brand color
 }
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.common.CommonMiddleware",
+    "django.middleware.common.CommonMiddleware", #add for jazzmin
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
@@ -155,7 +155,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / "static",
 ]
 
-
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # STATICFILES_DIRS = [BASE_DIR / 'static']
 

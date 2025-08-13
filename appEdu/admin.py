@@ -1,12 +1,27 @@
-# your_app/admin.py
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Enquiry, LeadSource, LeadStage
+from .models import Enquiry, LeadSource, LeadStage, Teacher
 
 @admin.register(Enquiry)
 class EnquiryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'phone', 'lead_source', 'lead_stage_badge', 'university', 'course')
-    list_filter = ('lead_source', 'lead_stage', 'university', 'course')
+    class Media:
+        css = {
+            'all': ('admin/css/custom.css',)
+        }
+
+    list_display = (
+        'name', 
+        'email', 
+        'phone', 
+        'university', 
+        'course',
+        'lead_source', 
+        'lead_stage',
+        'lead_stage_badge',
+        'consulted_by',
+    )
+    list_editable = ('lead_stage', 'consulted_by')
+    list_filter = ('lead_source', 'lead_stage', 'consulted_by', 'university', 'course')
     search_fields = ('name', 'email', 'phone', 'university', 'course')
     ordering = ('-id',)
     list_per_page = 25
@@ -21,18 +36,18 @@ class EnquiryAdmin(admin.ModelAdmin):
             "fields": ("university", "course"),
         }),
         ("Lead Details", {
-            "classes": ("collapse",),  # collapsed by default
-            "fields": ("lead_source", "lead_stage"),
+            "classes": ("wide",),
+            "fields": ("lead_source", "lead_stage", "consulted_by"),
         }),
     )
 
     def lead_stage_badge(self, obj):
         color_map = {
-            'PROSPECT': '#28a745',            # green
-            'BUSY': '#fd7e14',                # orange
-            'SWITCH OFF': '#6c757d',          # gray
-            'DROP NOT INTERESTED': '#dc3545', # red
-            'BLANK': '#007bff',               # blue
+            'PROSPECT': '#28a745',
+            'BUSY': '#fd7e14',
+            'SWITCH OFF': '#6c757d',
+            'DROP NOT INTERESTED': '#dc3545',
+            'BLANK': '#007bff',
         }
         label = obj.lead_stage.name if obj.lead_stage else 'BLANK'
         color = color_map.get(label, '#6c757d')
@@ -52,4 +67,9 @@ class LeadSourceAdmin(admin.ModelAdmin):
 
 @admin.register(LeadStage)
 class LeadStageAdmin(admin.ModelAdmin):
+    search_fields = ('name',)
+
+
+@admin.register(Teacher)
+class TeacherAdmin(admin.ModelAdmin):
     search_fields = ('name',)

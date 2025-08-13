@@ -1,4 +1,3 @@
-# your_app/models.py
 from django.db import models
 
 class LeadSource(models.Model):
@@ -9,6 +8,13 @@ class LeadSource(models.Model):
 
 
 class LeadStage(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Teacher(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
@@ -29,16 +35,24 @@ class Enquiry(models.Model):
         null=True,
         blank=True
     )
+
     def save(self, *args, **kwargs):
         if not self.lead_source:
             try:
                 self.lead_source = LeadSource.objects.get(name="Website")
             except LeadSource.DoesNotExist:
-                # Create "Website" if it doesn't exist
                 self.lead_source = LeadSource.objects.create(name="Website")
         super().save(*args, **kwargs)
+
     lead_stage = models.ForeignKey(
         LeadStage,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
+    )
+
+    consulted_by = models.ForeignKey(
+        Teacher,
         on_delete=models.SET_NULL,
         null=True,
         blank=True

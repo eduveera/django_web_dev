@@ -1,0 +1,99 @@
+/* Fieldset titles & captions — bold + larger for a classic look */
+fieldset.module h2,
+.module caption,
+.inline-group h3,
+.form-row label {
+    font-weight: 800;
+    font-size: 14px;
+    color: #123b6b; /* deep classic blue */
+}
+
+/* List table headers — bold */
+.results thead th {
+    font-weight: 800;
+    font-size: 13px;
+    color: #5d1fb3;
+}
+
+/* Make labels and help text clearer */
+.field-label {
+    font-weight: 700;
+}
+
+/* Slightly increase form input sizes for a bold readable UI */
+.form-row input[type="text"],
+.form-row input[type="email"],
+.form-row input[type="number"],
+.form-row select {
+    font-size: 14px;
+    padding: 8px 10px;
+}
+
+/* Optional: tune the badges as well (backup if admin list styles differ) */
+.lead-badge {
+    padding: 4px 10px;
+    border-radius: 6px;
+    color: #2a1ed8;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+/* Separator line between site name (Eduveera) and username (vivo1907) */
+.main-sidebar .user-panel {
+    border-top: 1px solid rgba(255, 255, 255, 0.3); /* faint white line */
+    margin-top: 5px;
+    padding-top: 10px;
+}
+
+/* Make the logged-in username black */
+.main-sidebar .user-panel .info a {
+    color: black !important;
+}
+
+/* Make the Lead Stage section header black in fieldsets */
+fieldset.module:nth-of-type(3) h2 {
+    background-color: black !important;
+    color: white !important;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+/* ============================= */
+/*  LEAD STAGE FIELD BLACK STYLE  */
+/* ============================= */
+
+/* For normal <select> dropdown (non-select2) */
+#id_lead_stage {
+    background-color: black !important;
+    color: white !important;
+    border: 1px solid #444 !important;
+    height: 38px;
+    padding: 5px 10px;
+}
+
+/* For select2 dropdown box */
+#id_lead_stage + .select2-container--default .select2-selection--single {
+    background-color: black !important;
+    color: white !important;
+    border: 1px solid #444 !important;
+    height: 38px;
+}
+
+/* Text inside the select2 box */
+#id_lead_stage + .select2-container--default .select2-selection__rendered {
+    color: white !important;
+    line-height: 36px;
+}
+
+/* Dropdown list background */
+.select2-results__option {
+    background-color: black !important;
+    color: white !important;
+}
+
+/* Hovered dropdown option */
+.select2-results__option--highlighted {
+    background-color: #222 !important;
+    color: white !important;
+}
